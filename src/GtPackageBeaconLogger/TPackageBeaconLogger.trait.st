@@ -12,7 +12,10 @@ TPackageBeaconLogger classSide >> announce: anObject [
 	self logger.
 	(anObject isKindOf: String)
 		ifTrue: [ self announcer announce: (StringSignal new message: anObject) ]
-		ifFalse: [ self announcer announce: anObject asBeaconSignal ].
+		ifFalse: [ self announcer
+				announce: (anObject
+						in: [ :object | (object isKindOf: Context) ifTrue: [ object copyStack ] ifFalse: [ object ] ])
+						asBeaconSignal ].
 	^ self logger
 ]
 

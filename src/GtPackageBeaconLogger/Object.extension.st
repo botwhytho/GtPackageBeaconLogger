@@ -20,3 +20,8 @@ Object >> logToBeaconInPackage: aPackage [
 	aLogger announce: self.
 	^ aLogger
 ]
+
+{ #category : #'*GtPackageBeaconLogger' }
+Object >> logToPackageBeacon [
+	^ self logToBeaconInPackage: thisContext sender receiver class package
+]
