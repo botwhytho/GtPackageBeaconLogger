@@ -2,15 +2,21 @@ Extension { #name : #Object }
 
 { #category : #'*GtPackageBeaconLogger' }
 Object >> logToBeaconInPackage: aPackage [
-	| aLogger className |
-	className := aPackage asPackage name.
-	aLogger := [ className asClass ]
+	| aLogger aPackageName newClassName |
+	aPackageName := aPackage asPackage name.
+	newClassName := aPackageName , 'BeaconLogger'.
+	aLogger := [ newClassName asClass ]
 			on: NotFound
-			do: [ (Object << (className , 'BeaconLogger' asSymbol))
-					traits: TPackageBeaconLogger;
-					package: className;
-					build;
-					install ].
+			do: [ | newClass |
+				newClass := (Object << newClassName)
+						traits: TPackageBeaconLogger;
+						package: aPackageName;
+						build;
+						install.
+				self
+					inform: 'Class `' , newClassName , '` created. Class name has been added to clipboard'.
+				GtClipboard default clipboardText: newClassName.
+				newClass ].
 	aLogger announce: self.
 	^ aLogger
 ]
