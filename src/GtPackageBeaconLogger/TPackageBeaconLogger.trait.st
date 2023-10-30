@@ -24,6 +24,16 @@ TPackageBeaconLogger classSide >> announcer [
 	^ MyAnnouncer ifNil: [ MyAnnouncer := Announcer new ]
 ]
 
+{ #category : #view }
+TPackageBeaconLogger classSide >> gtInspectLoggerFor: anAction [
+	<gtClassAction>
+	^ anAction button
+		tooltip: 'Inspect Logger';
+		priority: 1;
+		icon: BrGlamorousVectorIcons inspect;
+		action: [ :aButton | aButton phlow spawnObject: self logger ]
+]
+
 { #category : #accessing }
 TPackageBeaconLogger classSide >> gtLoggerFor: aView [
 <gtClassView>
