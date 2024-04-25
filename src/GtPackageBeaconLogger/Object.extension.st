@@ -4,7 +4,7 @@ Extension { #name : #Object }
 Object >> logToBeaconInPackage: aPackage [
 	| aLogger aPackageName newClassName |
 	aPackageName := aPackage asPackage name.
-	newClassName := aPackageName , 'BeaconLogger'.
+	newClassName := (aPackageName copyReplaceAll: '-' with: '') , 'BeaconLogger'.
 	aLogger := [ newClassName asClass ]
 			on: NotFound
 			do: [ | newClass |
