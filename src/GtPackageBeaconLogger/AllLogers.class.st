@@ -15,7 +15,7 @@ AllLogers class >> addLoger: logger [
 
 { #category : #accessing }
 AllLogers class >> announcer [
-	announcer ifNil: [ announcer := Announcer new ]
+	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
 { #category : #accessing }
@@ -37,7 +37,8 @@ AllLogers class >> gtLoggersFor: aView [
 					action: [ :aBrButton :aBrButtonModel :aBlClickEvent | 
 						self loggers remove: aLogger.
 						self announcer announce: Announcement new ] ];
-		updateWhen: Announcement in: [ self announcer ]
+		updateWhen: Announcement in: [ self announcer ];
+		addAutoUpdate: GtPhlowUpdateViewOnAddedToScene
 ]
 
 { #category : #accessing }
