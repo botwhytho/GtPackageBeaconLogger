@@ -14,6 +14,14 @@ AllLogers class >> announcer [
 ]
 
 { #category : #accessing }
+AllLogers class >> ensureLoggerNamed: aString [
+	^ AllLogers loggers
+		detect: [ :each | each name = aString ]
+		ifNone: [ AllLogers announcer announce: Announcement new.
+			AllLogers loggers add: (CircularMemoryLogger named: aString) ]
+]
+
+{ #category : #accessing }
 AllLogers class >> gtLoggersFor: aView [
 	<gtClassView>
 	| view |
