@@ -22,6 +22,18 @@ Object >> logToBeaconInPackage: aPackage [
 ]
 
 { #category : #'*GtPackageBeaconLogger' }
+Object >> logToNamed: aString [
+	| logger loggers |
+	loggers := SignalLogger allSubInstances.
+	logger := loggers
+			detect: [ :each | each name = aString ]
+			ifNone: [ CircularMemoryLogger named: aString ].
+	AllLogers addLoger: logger.
+	logger nextPut: self asBeaconSignal.
+	^ self
+]
+
+{ #category : #'*GtPackageBeaconLogger' }
 Object >> logToPackageBeacon [
 	^ self logToBeaconInPackage: thisContext sender receiver class package
 ]
