@@ -31,7 +31,7 @@ Object >> logToNamed: aString [
 				newLogger := AllLogers loggers add: (CircularMemoryLogger named: aString).
 				AllLogers announcer announce: Announcement new.
 				newLogger ].
-	logger nextPut: self asBeaconSignal.
+	AllLogers logObject: self toLogger: logger.
 	^ self
 ]
 
