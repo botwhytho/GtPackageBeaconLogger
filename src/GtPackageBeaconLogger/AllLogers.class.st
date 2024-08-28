@@ -8,11 +8,6 @@ Class {
 	#category : #GtPackageBeaconLogger
 }
 
-{ #category : #'*GtPackageBeaconLogger' }
-AllLogers class >> addLoger: logger [
-	self loggers add: logger
-]
-
 { #category : #accessing }
 AllLogers class >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
