@@ -7,14 +7,16 @@ Object >> logToBeaconInPackage: aPackage [
 	newClassName := (aPackageName copyReplaceAll: '-' with: '') , 'BeaconLogger'.
 	aLogger := [ newClassName asClass ]
 			on: NotFound
-			do: [ | newClass |
+			do: [ | message newClass |
 				newClass := (Object << newClassName)
 						traits: TPackageBeaconLogger;
 						package: aPackageName;
 						build;
 						install.
-				self
-					inform: 'Class `' , newClassName , '` created. Class name has been added to clipboard'.
+				message := 'Class `' , newClassName
+						, '` created. Class name has been added to clipboard'.
+				self inform: message.
+				NonInteractiveTranscript stdout crShow: message.
 				GtClipboard default clipboardText: newClassName.
 				newClass ].
 	aLogger announce: self.
