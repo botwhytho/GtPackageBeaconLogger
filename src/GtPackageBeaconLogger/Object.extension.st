@@ -17,7 +17,7 @@ Object >> logToBeaconInPackage: aPackage [
 						, '` created. Class name has been added to clipboard'.
 				self inform: message.
 				NonInteractiveTranscript stdout crShow: message.
-				GtClipboard default clipboardText: newClassName.
+				GtClipboard clipboardText: newClassName.
 				newClass ].
 	aLogger announce: self.
 	^ aLogger
