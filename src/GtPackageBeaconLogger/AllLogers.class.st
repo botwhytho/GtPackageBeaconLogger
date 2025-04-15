@@ -16,9 +16,9 @@ AllLogers class >> announcer [
 { #category : #accessing }
 AllLogers class >> ensureLoggerNamed: aString [
 	^ AllLogers loggers
-		detect: [ :each | each name = aString ]
-		ifNone: [ AllLogers announcer announce: Announcement new.
-			AllLogers loggers add: (CircularMemoryLogger named: aString) ]
+		at: aString
+		ifAbsentPut: [ AllLogers announcer announce: Announcement new.
+			CircularMemoryLogger named: aString ]
 ]
 
 { #category : #accessing }
@@ -29,19 +29,18 @@ AllLogers class >> gtLoggersFor: aView [
 	^ view
 		title: 'Loggers';
 		priority: 1;
-		items: [ self loggers ];
-		column: 'Name' text: [ :each | each name ];
-		column: 'Class' text: [ :each | each class ];
+		items: [ self loggers associations ];
+		column: 'Name' text: #key;
+		column: 'Class' text: [ :each | each value class ];
 		column: 'Delete'
 			stencil: [ :aLogger | 
 				BrButton new
 					aptitude: BrGlamorousButtonWithIconAptitude;
 					icon: BrGlamorousVectorIcons remove;
 					action: [ :aBrButton :aBrButtonModel :aBlClickEvent | 
-						self loggers remove: aLogger.
+						self loggers removeKey: aLogger key.
 						self announcer announce: Announcement new ] ];
-		updateWhen: Announcement in: [ self announcer ];
-		addAutoUpdate: GtPhlowUpdateViewOnAddedToScene
+		updateWhen: Announcement in: [ self announcer ]
 ]
 
 { #category : #'*GtPackageBeaconLogger' }
@@ -58,5 +57,6 @@ AllLogers class >> logObject: anObject toLogger: aLogger [
 { #category : #accessing }
 AllLogers class >> loggers [
 	^ loggers
-		ifNil: [ loggers := SignalLogger allSubInstances asOrderedCollection ]
+		ifNil: [ loggers := (SignalLogger allSubInstances
+					collect: [ :each | each name -> each ]) asDictionary ]
 ]
