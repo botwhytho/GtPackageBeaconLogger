@@ -40,7 +40,8 @@ AllLogers class >> gtLoggersFor: aView [
 					action: [ :aBrButton :aBrButtonModel :aBlClickEvent | 
 						self loggers removeKey: aLogger key.
 						self announcer announce: Announcement new ] ];
-		updateWhen: Announcement in: [ self announcer ]
+		updateWhen: Announcement in: [ self announcer ];
+		send: #value
 ]
 
 { #category : #'*GtPackageBeaconLogger' }
