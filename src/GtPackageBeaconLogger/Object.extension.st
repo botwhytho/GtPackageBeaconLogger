@@ -20,7 +20,7 @@ Object >> logToBeaconInPackage: aPackage [
 				GtClipboard clipboardText: newClassName.
 				newClass ].
 	aLogger announce: self.
-	^ aLogger
+	^ self
 ]
 
 { #category : #'*GtPackageBeaconLogger' }
