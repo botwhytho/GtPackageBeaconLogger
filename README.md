@@ -22,4 +22,6 @@ The easiest way to use is to send `logToNamed:` to an object to create a named a
 
 If you want a more permanent logger for your code, you can send `logToPackageBeacon` to an object in your code and it will get logged to a memory logger in a class created in the package the code lives in.
 
-Finally, you can also log the object to a class in a different package by sending it `logToBeaconInPackage:`, for exmple: `BlBasicExamples new circle logToBeaconInPackage: #MyPackage`
+Finally, you can also log the object to a class in a different package by sending it `logToBeaconInPackage:`, for exmple: `BlBasicExamples new circle logToBeaconInPackage: #MyPackage`.
+
+All the above methods are defined on `Object` and return the object they are sent to, simplifying logging of objects without much code change.
