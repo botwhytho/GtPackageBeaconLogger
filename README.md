@@ -7,7 +7,7 @@ Utility traits and extension method on Object to more easily log arbitrary objec
 	disableDuring: [ Metacello new
 			repository: 'github://botwhytho/GtPackageBeaconLogger:main/src';
 			baseline: 'GtPackageBeaconLogger';
-			load ] ] forkAt: 29 named: #GtPackageBeaconLogger
+			load ] ] asAsyncPromiseWithUserBackgroundPriority
 ```
 
 To depend on this package add this to your baseline:
