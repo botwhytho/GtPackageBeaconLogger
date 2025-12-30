@@ -1,6 +1,6 @@
-Extension { #name : #Announcement }
+Extension { #name : 'Announcement' }
 
-{ #category : #'*GtPackageBeaconLogger' }
+{ #category : '*GtPackageBeaconLogger' }
 Announcement >> emitToNamed: aString [
 	^ self logToNamed: aString
 ]

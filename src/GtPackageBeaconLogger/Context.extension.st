@@ -1,6 +1,6 @@
-Extension { #name : #Context }
+Extension { #name : 'Context' }
 
-{ #category : #'*GtPackageBeaconLogger' }
+{ #category : '*GtPackageBeaconLogger' }
 Context >> gtDebugFor: anAction [
 	<gtAction>
 	^ anAction button

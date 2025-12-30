@@ -1,13 +1,14 @@
 Trait {
-	#name : #TPackageBeaconLogger,
+	#name : 'TPackageBeaconLogger',
 	#classInstVars : [
 		'MyAnnouncer',
 		'Logger'
 	],
-	#category : #GtPackageBeaconLogger
+	#category : 'GtPackageBeaconLogger',
+	#package : 'GtPackageBeaconLogger'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TPackageBeaconLogger classSide >> announce: anObject [
 	self logger.
 	(anObject isKindOf: String)
@@ -19,12 +20,12 @@ TPackageBeaconLogger classSide >> announce: anObject [
 	^ self logger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TPackageBeaconLogger classSide >> announcer [
 	^ MyAnnouncer ifNil: [ MyAnnouncer := Announcer new ]
 ]
 
-{ #category : #view }
+{ #category : 'view' }
 TPackageBeaconLogger classSide >> gtInspectLoggerFor: anAction [
 	<gtClassAction>
 	^ anAction button
@@ -34,7 +35,7 @@ TPackageBeaconLogger classSide >> gtInspectLoggerFor: anAction [
 		action: [ :aButton | aButton phlow spawnObject: self logger ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TPackageBeaconLogger classSide >> gtLoggerFor: aView [
 <gtClassView>
 ^ aView forward
@@ -44,7 +45,7 @@ TPackageBeaconLogger classSide >> gtLoggerFor: aView [
 	view: #gtRecordingsFor:
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TPackageBeaconLogger classSide >> logger [
 	^ Logger
 		ifNil: [ Logger := MemoryLogger new
@@ -53,12 +54,12 @@ TPackageBeaconLogger classSide >> logger [
 					yourself ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TPackageBeaconLogger classSide >> reset [
 	self logger reset
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TPackageBeaconLogger classSide >> stop [
 	self logger stop.
 	Logger := nil

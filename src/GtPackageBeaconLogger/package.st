@@ -1,1 +1,1 @@
-Package { #name : #GtPackageBeaconLogger }
+Package { #name : 'GtPackageBeaconLogger' }

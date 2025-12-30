@@ -1,7 +1,8 @@
 Class {
-	#name : #PackageBeaconLoggerUser,
-	#superclass : #Object,
+	#name : 'PackageBeaconLoggerUser',
+	#superclass : 'Object',
 	#traits : 'TPackageBeaconLogger',
 	#classTraits : 'TPackageBeaconLogger classTrait',
-	#category : #GtPackageBeaconLogger
+	#category : 'GtPackageBeaconLogger',
+	#package : 'GtPackageBeaconLogger'
 }

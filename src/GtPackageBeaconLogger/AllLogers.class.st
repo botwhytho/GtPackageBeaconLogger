@@ -1,19 +1,20 @@
 Class {
-	#name : #AllLogers,
-	#superclass : #Object,
+	#name : 'AllLogers',
+	#superclass : 'Object',
 	#classInstVars : [
 		'loggers',
 		'announcer'
 	],
-	#category : #GtPackageBeaconLogger
+	#category : 'GtPackageBeaconLogger',
+	#package : 'GtPackageBeaconLogger'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AllLogers class >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AllLogers class >> ensureLoggerNamed: aString [
 	^ AllLogers loggers
 		at: aString
@@ -21,7 +22,7 @@ AllLogers class >> ensureLoggerNamed: aString [
 			CircularMemoryLogger named: aString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AllLogers class >> gtLoggersFor: aView [
 	<gtClassView>
 	| view |
@@ -44,7 +45,7 @@ AllLogers class >> gtLoggersFor: aView [
 		send: #value
 ]
 
-{ #category : #'*GtPackageBeaconLogger' }
+{ #category : 'logging' }
 AllLogers class >> logObject: anObject toLogger: aLogger [
 	| wrappedObject |
 	wrappedObject := (anObject isKindOf: String)
@@ -55,7 +56,7 @@ AllLogers class >> logObject: anObject toLogger: aLogger [
 	aLogger nextPut: wrappedObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AllLogers class >> loggers [
 	^ loggers
 		ifNil: [ loggers := (SignalLogger allSubInstances

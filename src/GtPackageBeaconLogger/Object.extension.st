@@ -1,6 +1,6 @@
-Extension { #name : #Object }
+Extension { #name : 'Object' }
 
-{ #category : #'*GtPackageBeaconLogger' }
+{ #category : '*GtPackageBeaconLogger' }
 Object >> logToBeaconInPackage: aPackage [
 	| aLogger aPackageName newClassName |
 	aPackageName := aPackage asPackage name.
@@ -23,7 +23,7 @@ Object >> logToBeaconInPackage: aPackage [
 	^ self
 ]
 
-{ #category : #'*GtPackageBeaconLogger' }
+{ #category : '*GtPackageBeaconLogger' }
 Object >> logToNamed: aString [
 	| logger |
 	logger := AllLogers ensureLoggerNamed: aString.
@@ -31,7 +31,7 @@ Object >> logToNamed: aString [
 	^ self
 ]
 
-{ #category : #'*GtPackageBeaconLogger' }
+{ #category : '*GtPackageBeaconLogger' }
 Object >> logToPackageBeacon [
 	^ self logToBeaconInPackage: thisContext sender receiver class package
 ]
